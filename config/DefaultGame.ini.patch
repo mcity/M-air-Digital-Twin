@@ -1,0 +1,3 @@
++MapsToCook=(FilePath="/Game/McityMap/McityMap_Main")
++DirectoriesToAlwaysStageAsUFS=(Path="McityMap/OpenDrive")
++DirectoriesToAlwaysStageAsUFS=(Path="McityMap/Nav")
