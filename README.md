@@ -1,3 +1,4 @@
+** use ```git lfs``` to clone and pull from repo
 # M-Air Digital Twin :: McityMap for CarlaAir
 
 This repo integrates the **McityMap** digital twin into a stock
