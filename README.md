@@ -1,4 +1,4 @@
-# M-Air Digital Twin
+# M-air Digital Twin
 
 > ⚠️ This repo stores its map assets (~2 GB of `.uasset`/`.umap` files) in
 > **[Git LFS](https://git-lfs.com/)** — install `git-lfs` before cloning or
