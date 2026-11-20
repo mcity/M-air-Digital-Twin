@@ -174,7 +174,7 @@ See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
 ## Credits and citation
 
-### MAirCorridor, by Sean Rice
+### MAirCorridor, by [Sean Rice](https://github.com/sriceumich)
 
 This environment was created by **Sean Rice, University of Michigan**. His
 [MAirCorridor](https://github.com/sriceumich/MAirCorridor) project is the source of essentially everything
