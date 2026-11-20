@@ -6,6 +6,8 @@
     python3 install.py --ue-root ... --airsim /path/to/ProjectAirSim          (a source clone)
     python3 install.py --ue-root ... --project /path/to/YourProject.uproject  (your own project)
 
+On Windows: install.bat with the same arguments (or py -3 install.py ...).
+
 What it does, in order. Every step is skipped when it is already done, so it is safe to run again.
 
   1. checks Unreal Engine, Python, git and free disk space
@@ -65,6 +67,11 @@ def stop(text):
 
 def run(cmd, **kw):
     say("  $ " + " ".join(str(c) for c in cmd))
+    if WINDOWS and str(cmd[0]).lower().endswith((".bat", ".cmd")):
+        # A batch file is run by cmd.exe, which drops the outer quotes of its command line when
+        # there are several quoted parts (a path with spaces twice is enough). /s makes it drop
+        # exactly the pair added here.
+        cmd = 'cmd.exe /d /s /c "%s"' % subprocess.list2cmdline([str(c) for c in cmd])
     return subprocess.call(cmd, **kw)
 
 
@@ -86,6 +93,13 @@ def sha256(path):
 
 def find_ue_root(given):
     root = given or os.environ.get("UE_ROOT")
+    if not root and WINDOWS:
+        # Where the Epic Games Launcher puts it.
+        for base in (os.environ.get("ProgramFiles"), os.environ.get("ProgramW6432")):
+            guess = os.path.join(base or "", "Epic Games", "UE_5.7")
+            if os.path.isfile(os.path.join(guess, "Engine", "Build", "Build.version")):
+                root = guess
+                break
     if not root:
         stop("Unreal Engine 5.7 is needed. Pass --ue-root /path/to/engine (the folder that holds "
              "Engine/), or set UE_ROOT.")
@@ -107,6 +121,21 @@ def find_ue_root(given):
 def build_script(ue_root):
     name = "Build.bat" if WINDOWS else os.path.join("Linux", "Build.sh")
     return os.path.join(ue_root, "Engine", "Build", "BatchFiles", name)
+
+
+def check_windows(project):
+    """Two things that stop a Windows install late and confusingly: say so at the start."""
+    vswhere = os.path.join(os.environ.get("ProgramFiles(x86)", ""), "Microsoft Visual Studio",
+                           "Installer", "vswhere.exe")
+    if not os.path.isfile(vswhere):
+        say("  WARNING: Visual Studio was not found. Building needs Visual Studio 2022 with the\n"
+            "           'Game development with C++' workload (README.md, Windows).")
+    # The longest path of the assets is about 150 characters below the project folder, and
+    # Unreal's build output goes deeper than that. Windows stops at 260.
+    if len(os.path.dirname(project)) > 60:
+        say("  WARNING: %s is a long path. Windows limits paths to 260 characters; if the\n"
+            "           install or the build fails on a path, move this folder somewhere short\n"
+            "           such as C:\\MAir and run again." % os.path.dirname(project))
 
 
 def editor_target(project):
@@ -132,6 +161,9 @@ def make_venv(venv):
     if not os.path.isfile(py):
         if run([sys.executable, "-m", "venv", venv]) != 0:
             stop("could not create a Python environment. On Ubuntu: sudo apt install python3-venv")
+    if WINDOWS and sys.version_info >= (3, 13):
+        say("  NOTE: this is Python %s. If a package below fails to install, use Python 3.10 to 3.12\n"
+            "        (py -3.11 install.py ...) after deleting the .venv folder." % platform.python_version())
     run([py, "-m", "pip", "install", "--quiet", "--upgrade", "pip"])
     if run([py, "-m", "pip", "install", "--quiet", "-r", os.path.join(HERE, "requirements.txt")]) != 0:
         stop("pip could not install requirements.txt (see the output above).")
@@ -364,6 +396,8 @@ def main():
     assets_dir = os.path.join(HERE, "MAirCorridor_Assets")
     downloads = os.path.join(HERE, ".downloads")
     say("  project %s (target %s)" % (project, target))
+    if WINDOWS:
+        check_windows(project)
 
     kind, clone, airsim_plugins = (None, None, None)
     if args.airsim:
@@ -374,9 +408,11 @@ def main():
         say("  Project AirSim: %s at %s" % ("source clone" if kind == "source" else "plugin release",
                                             clone or airsim_plugins))
         if kind == "source" and not simlibs_built(airsim_plugins):
-            stop("the sim libs in %s are not built yet. In the clone run:\n"
-                 "    export UE_ROOT=%s\n    ./build.sh simlibs_release\nthen run this again."
-                 % (clone, ue_root))
+            how = ("in the 'x64 Native Tools Command Prompt for VS 2022':\n"
+                   "    set UE_ROOT=%s\n    build.cmd simlibs_release" if WINDOWS else
+                   "run:\n    export UE_ROOT=%s\n    ./build.sh simlibs_release") % ue_root
+            stop("the sim libs in %s are not built yet. In the clone, %s\nthen run this again."
+                 % (clone, how))
     elif os.path.isfile(os.path.join(plugins_dir, "ProjectAirSim", "ProjectAirSim.uplugin")):
         say("  Project AirSim: already in the project's Plugins folder")
         guess = os.path.abspath(os.path.join(project_dir, "..", ".."))
@@ -471,11 +507,12 @@ def main():
         "MAIRCORRIDOR_ASSETS": assets_dir,
         "MAIRCORRIDOR_PLAN": os.path.join(assets_dir, "ue_rect_3m", "mcity_rect_3m.json"),
     })
+    sep, ext = ("\\", ".bat") if WINDOWS else ("/", ".sh")
     say("\nDone. Next:\n"
-        "  scripts/run_sim.sh                 start the simulator (the first start builds caches: be patient)\n"
-        "  scripts/hover_test.sh              in a second terminal: take off, hover, land\n"
-        "  scripts/fly_mission.sh missions/mcity_circle.json\n"
-        "See README.md for the rest.")
+        "  scripts%srun_sim%s                 start the simulator (the first start builds caches: be patient)\n"
+        "  scripts%shover_test%s              in a second terminal: hold a hover, fly 20 m, print PASS\n"
+        "  scripts%sfly_mission%s missions%smcity_circle.json\n"
+        "See README.md for the rest." % (sep, ext, sep, ext, sep, ext, sep))
 
 
 if __name__ == "__main__":
