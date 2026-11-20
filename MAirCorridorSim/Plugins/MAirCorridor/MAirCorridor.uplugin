@@ -1,0 +1,40 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "1.0",
+    "FriendlyName": "M-Air Corridor",
+    "Description": "The M-Air corridor as shippable Unreal content, plus the code that builds and loads it. STANDALONE BY CONSTRUCTION: every module here depends on stock Unreal only, so this plugin is the whole deliverable and nothing else has to ship beside it. MAirCorridorScan streams the M-City photogrammetric scan at runtime. MAirCorridorTraffic flies the real aircraft overhead, read from an ADS-B snapshot that Tools/adsb.py keeps up to date. MAirCorridorEditor is edit-time only: it builds an ALandscape from a prepared heightmap far larger than Unreal's own import will take, and places the generated trees and rocks onto it. The terrain is a stock ALandscape, the drape a stock material graph and the imagery stock virtual textures.",
+    "Category": "World",
+    "CreatedBy": "Sean Rice",
+    "CreatedByURL": "https://github.com/sriceumich/MAirCorridor",
+    "DocsURL": "",
+    "MarketplaceURL": "",
+    "SupportURL": "",
+    "CanContainContent": true,
+    "IsBetaVersion": false,
+    "IsExperimentalVersion": false,
+    "Installed": false,
+    "Modules": [
+        {
+            "Name": "MAirCorridorScan",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+        },
+        {
+            "Name": "MAirCorridorTraffic",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+        },
+        {
+            "Name": "MAirCorridorEditor",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+        }
+    ],
+    "Plugins": [
+        {
+            "Name": "ProceduralMeshComponent",
+            "Enabled": true
+        }
+    ]
+}

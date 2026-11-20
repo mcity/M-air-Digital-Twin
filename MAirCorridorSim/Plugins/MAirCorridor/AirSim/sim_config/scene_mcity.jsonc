@@ -1,0 +1,65 @@
+// A Project AirSim drone flying over the M-City terrain in this plugin.
+//
+// "scene-type": "UnrealNative" is the important line. Project AirSim can load its own environment;
+// this tells it NOT to, and to use whatever level is already open - which is how the drone ends up
+// over this terrain instead of over its own.
+//
+// THE SPAWN POSITION IS THE PART THAT IS EASY TO GET WRONG, and getting it wrong looks like the
+// drone not existing. Project AirSim works in NED metres measured from the UNREAL WORLD ORIGIN:
+//
+//     north = Unreal X / 100        east = Unreal Y / 100        down = -Unreal Z / 100
+//
+// DOWN IS UNREAL Z, NOT ELEVATION. The landscape sits at Unreal Z 0, where Z 0 is 236.0 m above
+// sea level (Tools/level.json, measured from the level). An earlier note here read an elevation
+// off the heightmap and used it as the height, which put every start 236 m too high.
+//
+// The start below is at Unreal X=982700 Y=1095500 (cm). A trace straight down there hits the
+// landscape at Z 2982 cm, and the scan is 8.45 m above that, so -291.0 starts the drone about
+// 250 m above the scan. It stays there until the vertiport by the M-City outbuilding is placed;
+// then the start goes on the pad. Pick a spot in the editor, convert it with the line above, and
+// remember DOWN IS POSITIVE in NED.
+{
+  "id": "MCity",
+  "actors": [
+    {
+      "type": "robot",
+      "name": "Drone1",
+      "origin": {
+        "xyz": "9827.0 10955.0 -291.0",
+        "rpy-deg": "0 0 0"
+      },
+      "robot-config": "robot_quadrotor_fastphysics_weather.jsonc"
+    }
+  ],
+  "clock": {
+    "type": "steppable",
+    "step-ns": 3000000,
+    "real-time-update-rate": 3000000,
+    "pause-on-start": false
+  },
+  // M-City is in Ann Arbor, Michigan. This only sets the geodetic reference for lat/lon readouts and
+  // gravity; the NED frame's origin is still the Unreal world origin.
+  "home-geo-point": {
+    "latitude": 42.29642,
+    "longitude": -83.37792,
+    "altitude": 250.0
+  },
+  // DELIBERATELY ZERO. Wind is expected to come from a per-robot wind provider in the sim when one
+  // is present; anything set here is only the fallback when it is not. Leaving a value here would
+  // make it unclear which of the two you were feeling.
+  "wind": {
+    "velocity": "0.0 0.0 0.0"
+  },
+  // SEGMENTATION IS WRITTEN INTO THE LEVEL, so Project AirSim's own pass is OFF. That pass makes
+  // an id by adding up the letters of each mesh owner's name, overwrites whatever the level holds,
+  // and reaches only what is loaded when the scene starts: every square kilometre of foliage would
+  // be a different arbitrary class, and anything World Partition streams in later would have none.
+  // The classes are Tools/segmentation.json, written into the components by
+  // Tools/unreal/label_segmentation.py; the flight tools label the drone when the scene loads.
+  "segmentation": {
+    "initialize-ids": false,
+    "ignore-existing": false,
+    "use-owner-name": true
+  },
+  "scene-type": "UnrealNative"
+}

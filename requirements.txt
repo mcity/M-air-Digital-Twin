@@ -1,0 +1,23 @@
+# Everything the flight tools need. install.py puts these in .venv.
+# Project AirSim's Python client is run from its source (PYTHONPATH), so its dependencies are listed here.
+huggingface_hub>=0.24
+pynng
+msgpack
+opencv-python
+numpy>=1.23
+matplotlib
+commentjson
+jsonschema
+inputs
+pqdict
+cryptography
+pykml
+jsonlines
+shapely>=2.0
+# MAirCorridor mission tools
+rasterio>=1.3
+requests>=2.28
+Pillow>=9.0
+pyshp>=2.3
+# Keyboard flight on Linux (stands in for the root-only `keyboard` package)
+pynput

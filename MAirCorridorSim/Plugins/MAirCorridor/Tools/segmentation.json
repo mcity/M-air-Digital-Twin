@@ -1,0 +1,13 @@
+{
+  "WHAT": "The segmentation classes of the corridor level: what each id means, and which content carries it. Tools/unreal/label_segmentation.py writes these ids into the level's components, and a recorded flight's manifest carries this table with each id's colour in the segmentation camera's image.",
+  "WHY_IN_THE_LEVEL": "Project AirSim's own pass gives every mesh an id made by adding up the letters of its owner's name, overwrites whatever the level holds, and touches only what is loaded when the scene starts. That makes every square kilometre of foliage a different arbitrary 'class', and nothing World Partition streams in later gets one at all. Written into the components, an id streams in with them; the scene configs turn Project AirSim's pass off so it is not overwritten.",
+  "classes": {
+    "unlabelled": {"id": 0, "what": "anything not listed below, and the sky"},
+    "ground": {"id": 1, "what": "the landscape", "landscape": true},
+    "building": {"id": 2, "what": "the OpenStreetMap buildings, merged tiles or one actor per building", "mesh_paths": ["/MAirCorridor/Buildings/", "/MAirCorridor/BuildingsSplit/"]},
+    "tree": {"id": 3, "what": "every tree model in the vegetation library", "mesh_paths": ["/MAirCorridor/Vegetation/Trees/"]},
+    "rock": {"id": 4, "what": "every rock model in the vegetation library", "mesh_paths": ["/MAirCorridor/Vegetation/Rocks/"]},
+    "scan": {"id": 5, "what": "the M-City photogrammetric scan; one mesh, so its buildings, trees and roads cannot be told apart", "mesh_paths": ["/MAirCorridor/Scan/"]},
+    "drone": {"id": 6, "what": "the flown aircraft, labelled by the flight tools when the scene loads", "robot": true}
+  }
+}

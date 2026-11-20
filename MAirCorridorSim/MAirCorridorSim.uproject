@@ -1,0 +1,18 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.7",
+	"Category": "",
+	"Description": "Host project for the M-Air corridor environment under Project AirSim.",
+	"Modules": [
+		{
+			"Name": "MAirCorridorSim",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{ "Name": "MAirCorridor", "Enabled": true },
+		{ "Name": "ProjectAirSim", "Enabled": true },
+		{ "Name": "ModelingToolsEditorMode", "Enabled": true, "TargetAllowList": [ "Editor" ] }
+	]
+}

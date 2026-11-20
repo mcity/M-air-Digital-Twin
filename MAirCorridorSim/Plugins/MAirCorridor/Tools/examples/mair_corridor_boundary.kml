@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:globalmapper="https://www.bluemarblegeo.com/globalmapper">
+<Document>
+  <!-- Begin Style Definitions -->
+  <Style id="area1">
+    <LineStyle>
+      <color>FF1614B5</color>
+      <width>1</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>BF1C1AE3</color>
+      <fill>1</fill>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+  <Folder>
+    <name>Area Features</name>
+    <description>Area Features</description>
+    <Placemark>
+      <description>M-air Corridor Concept 2025</description>
+      <name>M-air Corridor Concept 2025</name>
+      <styleUrl>#area1</styleUrl>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              -83.034082160,42.355444556,0
+              -83.072586935,42.362557713,0
+              -83.117678053,42.353198128,0
+              -83.158716037,42.341964787,0
+              -83.211913424,42.326234736,0
+              -83.266124094,42.313872651,0
+              -83.324387899,42.303381704,0
+              -83.386198196,42.294388073,0
+              -83.458647970,42.281644896,0
+              -83.510832073,42.270773679,0
+              -83.573655654,42.261400435,0
+              -83.616213563,42.270773679,0
+              -83.643065577,42.288016807,0
+              -83.672450801,42.289890775,0
+              -83.701329382,42.314247295,0
+              -83.724128262,42.311999396,0
+              -83.722608337,42.285393157,0
+              -83.708929009,42.258025726,0
+              -83.685623487,42.253150827,0
+              -83.658771472,42.253525832,0
+              -83.640025727,42.249775676,0
+              -83.631412816,42.240774392,0
+              -83.616720205,42.231771823,0
+              -83.581761922,42.228770682,0
+              -83.542243863,42.233272341,0
+              -83.508298864,42.241524548,0
+              -83.446995209,42.250525725,0
+              -83.396331031,42.259525619,0
+              -83.094372531,42.314247295,0
+              -83.060934174,42.314247295,0
+              -83.015843056,42.323612679,0
+              -83.034082160,42.355444556,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>

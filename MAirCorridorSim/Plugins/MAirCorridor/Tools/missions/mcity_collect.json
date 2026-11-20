@@ -1,0 +1,56 @@
+{
+  "name": "mcity_collect",
+  "plan": "D:/temp/M-City-SCAN.0/ue_rect_3m/mcity_rect_3m.json",
+  "scene": "scene_mcity_sensors.jsonc",
+  "drone": "Drone1",
+  "takeoff_height": 20.0,
+  "land_at_end": true,
+  "FRAME": "lon/lat in WGS84 degrees; height in metres, 'agl' above the ground beneath the point or 'msl' above sea level; speed m/s; hold_s seconds",
+  "waypoints": [
+    {
+      "name": "Launch",
+      "lon": -83.699,
+      "lat": 42.2995,
+      "height": 40.0,
+      "reference": "agl",
+      "speed": 8.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "NorthGate",
+      "lon": -83.6975,
+      "lat": 42.303,
+      "height": 50.0,
+      "reference": "agl",
+      "speed": 8.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "TrackCentre",
+      "lon": -83.6964,
+      "lat": 42.3003,
+      "height": 50.0,
+      "reference": "agl",
+      "speed": 8.0,
+      "hold_s": 5
+    },
+    {
+      "name": "Cruise",
+      "lon": -83.693,
+      "lat": 42.299,
+      "height": 50.0,
+      "reference": "agl",
+      "speed": 8.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "Return",
+      "lon": -83.699,
+      "lat": 42.2995,
+      "height": 40.0,
+      "reference": "agl",
+      "speed": 8.0,
+      "hold_s": 0.0
+    }
+  ]
+}
