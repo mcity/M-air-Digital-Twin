@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use MAirCorridor, its tools or its data pipeline in your work, please cite it as below."
+type: software
+title: "MAirCorridor: an Unreal Engine plugin and geodata toolchain for the M-Air corridor"
+abstract: >-
+  An Unreal Engine 5.7 plugin that builds very large Landscapes from any elevation data, places
+  surveyed and generated vegetation onto them, and streams a photogrammetric scan at runtime,
+  together with Python tools that download USGS 3DEP and Copernicus elevation and USDA NAIP aerial
+  imagery for any area.
+authors:
+  - name: "Sean Rice - University of Michigan"
+version: 1.0.0
+date-released: 2026-09-16
+repository-code: "https://github.com/sriceumich/MAirCorridor"
+url: "https://github.com/sriceumich/MAirCorridor"
+keywords:
+  - Unreal Engine
+  - digital twin
+  - terrain
+  - landscape
+  - LiDAR
+  - USGS 3DEP
+  - NAIP
+  - OpenStreetMap
+  - photogrammetry
+  - drone simulation
+  - Mcity
+references:
+  - type: data
+    title: "3D Elevation Program (3DEP) 1/9 arc-second and 1 meter Digital Elevation Models"
+    authors:
+      - name: "U.S. Geological Survey"
+    url: "https://www.usgs.gov/3d-elevation-program"
+  - type: data
+    title: "National Agriculture Imagery Program (NAIP)"
+    authors:
+      - name: "USDA Farm Service Agency"
+    url: "https://naip-usdaonline.hub.arcgis.com/"
+  - type: data
+    title: "OpenStreetMap"
+    authors:
+      - name: "OpenStreetMap contributors"
+    url: "https://www.openstreetmap.org/copyright"
+    license: ODbL-1.0
+  - type: software
+    title: "blosm: Blender add-on for OpenStreetMap, terrain and 3D cities"
+    authors:
+      - family-names: "Elistratov"
+        given-names: "Vladimir"
+    url: "https://github.com/vvoovv/blosm"
+    version: "2.7.22"
+  - type: software
+    title: "tree-gen: procedural generation of tree models in Blender"
+    authors:
+      - name: "friggog"
+    url: "https://github.com/friggog/tree-gen"

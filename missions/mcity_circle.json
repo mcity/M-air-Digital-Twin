@@ -1,0 +1,241 @@
+{
+  "name": "mcity_circle",
+  "scene": "scene_mcity.jsonc",
+  "drone": "Drone1",
+  "takeoff_height": 20.0,
+  "land_at_end": true,
+  "FRAME": "lon/lat in WGS84 degrees; height in metres, 'agl' above the ground beneath the point or 'msl' above sea level; speed m/s; hold_s seconds",
+  "start": {
+    "lon": -83.6964,
+    "lat": 42.30255,
+    "height": 60.0,
+    "reference": "agl"
+  },
+  "waypoints": [
+    {
+      "name": "C00",
+      "lon": -83.6964,
+      "lat": 42.30255,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C01",
+      "lon": -83.695614,
+      "lat": 42.302473,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C02",
+      "lon": -83.694882,
+      "lat": 42.302248,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C03",
+      "lon": -83.694253,
+      "lat": 42.301891,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C04",
+      "lon": -83.69377,
+      "lat": 42.301425,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C05",
+      "lon": -83.693467,
+      "lat": 42.300882,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C06",
+      "lon": -83.693364,
+      "lat": 42.3003,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C07",
+      "lon": -83.693467,
+      "lat": 42.299718,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C08",
+      "lon": -83.69377,
+      "lat": 42.299175,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C09",
+      "lon": -83.694253,
+      "lat": 42.298709,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C10",
+      "lon": -83.694882,
+      "lat": 42.298352,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C11",
+      "lon": -83.695614,
+      "lat": 42.298127,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C12",
+      "lon": -83.6964,
+      "lat": 42.29805,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C13",
+      "lon": -83.697186,
+      "lat": 42.298127,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C14",
+      "lon": -83.697918,
+      "lat": 42.298352,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C15",
+      "lon": -83.698547,
+      "lat": 42.298709,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C16",
+      "lon": -83.69903,
+      "lat": 42.299175,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C17",
+      "lon": -83.699333,
+      "lat": 42.299718,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C18",
+      "lon": -83.699436,
+      "lat": 42.3003,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C19",
+      "lon": -83.699333,
+      "lat": 42.300882,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C20",
+      "lon": -83.69903,
+      "lat": 42.301425,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C21",
+      "lon": -83.698547,
+      "lat": 42.301891,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C22",
+      "lon": -83.697918,
+      "lat": 42.302248,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C23",
+      "lon": -83.697186,
+      "lat": 42.302473,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "C24",
+      "lon": -83.6964,
+      "lat": 42.30255,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 10.0,
+      "hold_s": 0.0
+    }
+  ]
+}

@@ -1,4 +1,0 @@
-# Extra packages needed by the Mcity scripts, on top of the projectairsim
-# client library (install that first per the Project AirSim docs).
-websockets   # gps_ws_server.py browser stream
-python-xlib  # keyboard_control_gnss.py window-scoped key input (X11, no root)

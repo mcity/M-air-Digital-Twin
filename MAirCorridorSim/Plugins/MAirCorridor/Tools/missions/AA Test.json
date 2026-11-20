@@ -1,0 +1,47 @@
+{
+  "name": "AA Test",
+  "plan": "D:/temp/M-City-SCAN.0/ue_rect_3m/mcity_rect_3m.json",
+  "scene": "scene_mcity.jsonc",
+  "drone": "Drone1",
+  "takeoff_height": 20.0,
+  "land_at_end": true,
+  "FRAME": "lon/lat in WGS84 degrees; height in metres, 'agl' above the ground beneath the point or 'msl' above sea level; speed m/s; hold_s seconds",
+  "waypoints": [
+    {
+      "name": "WP1",
+      "lon": -83.6969253159439,
+      "lat": 42.301254675025504,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 12.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "WP2",
+      "lon": -83.6972847319519,
+      "lat": 42.29535456058273,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 12.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "WP3",
+      "lon": -83.69259623059386,
+      "lat": 42.298536802614755,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 12.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "WP4",
+      "lon": -83.696829,
+      "lat": 42.301247,
+      "height": 60.0,
+      "reference": "agl",
+      "speed": 12.0,
+      "hold_s": 0.0
+    }
+  ]
+}

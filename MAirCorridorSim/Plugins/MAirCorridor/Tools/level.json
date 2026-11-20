@@ -1,0 +1,24 @@
+{
+  "WHAT": "Where the corridor level's landscape actually is, measured from the level by Tools/unreal/measure_level.py. flightplan.py uses it in place of the landscape plan's own placement. Measure again whenever the landscape is moved.",
+  "level": "/MAirCorridor/Scene/CorridorTerrain",
+  "plan_name": "mcity_rect_3m",
+  "landscape_location_cm": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "landscape_scale": [
+    300.0,
+    300.0,
+    100.002
+  ],
+  "check": {
+    "at_unreal_cm": [
+      982700.0,
+      1095500.0
+    ],
+    "trace_hit_z_cm": 2982.1,
+    "hit": "LandscapeStreamingProxy_CZRW0IDOL3BFLU6P8BA60V9I9_2040_1_1_0"
+  },
+  "measured": "2026-10-04"
+}

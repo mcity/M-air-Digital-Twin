@@ -1,0 +1,34 @@
+{
+  "name": "mcity_to_motts",
+  "scene": "scene_mcity.jsonc",
+  "drone": "Drone1",
+  "takeoff_height": 20.0,
+  "land_at_end": true,
+  "FRAME": "lon/lat in WGS84 degrees; height in metres, 'agl' above the ground beneath the point or 'msl' above sea level; speed m/s; hold_s seconds",
+  "start": {
+    "lon": -83.69708181290196,
+    "lat": 42.30231694407856,
+    "height": 80.0,
+    "reference": "agl"
+  },
+  "waypoints": [
+    {
+      "name": "MCity",
+      "lon": -83.69708181290196,
+      "lat": 42.30231694407856,
+      "height": 80.0,
+      "reference": "agl",
+      "speed": 15.0,
+      "hold_s": 0.0
+    },
+    {
+      "name": "Motts",
+      "lon": -83.72717606869848,
+      "lat": 42.28185286817973,
+      "height": 80.0,
+      "reference": "agl",
+      "speed": 15.0,
+      "hold_s": 5.0
+    }
+  ]
+}

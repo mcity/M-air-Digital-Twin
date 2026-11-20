@@ -1,5 +1,27 @@
-*.uasset filter=lfs diff=lfs merge=lfs -text
-*.umap filter=lfs diff=lfs merge=lfs -text
-*.uexp filter=lfs diff=lfs merge=lfs -text
-*.ubulk filter=lfs diff=lfs merge=lfs -text
-*.udic filter=lfs diff=lfs merge=lfs -text
+# Unreal assets are binary. Git's content detection almost always gets this right on its own, but
+# "almost" is not a good property for a 400 MB tree of meshes: one file misread as text and
+# line-ending converted is a corrupt asset that still clones without complaint.
+*.uasset binary
+*.umap   binary
+*.ubulk  binary
+*.uexp   binary
+*.ancm   binary
+
+# Source is text. Normalise to LF in the repository; Windows checkouts still get CRLF.
+*.cpp    text
+*.h      text
+*.cs     text
+*.py     text
+*.md     text
+*.json   text
+*.jsonc  text
+*.uplugin text
+*.cmd    text eol=crlf
+
+# The M-City scan goes in Git LFS: about 2.9 GB in 631 files, one of them 359 MB, past the 100 MB
+# GitHub takes in plain Git. Clone with Git LFS installed, or these arrive as small pointer files and
+# the scan view is empty. Its tile index is text and stays in plain Git, so it diffs.
+Content/Scan/**  filter=lfs diff=lfs merge=lfs -text
+Content/Scans/** filter=lfs diff=lfs merge=lfs -text
+Content/Scans/**/*.json !filter !diff !merge text
+*.sh     text eol=lf

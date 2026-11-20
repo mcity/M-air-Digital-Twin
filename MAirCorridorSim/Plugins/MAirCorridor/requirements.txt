@@ -1,0 +1,16 @@
+pynng
+msgpack
+opencv-python
+numpy
+keyboard
+matplotlib
+commentjson
+jsonschema
+inputs
+pqdict
+cryptography
+pykml
+junit-xml
+jsonlines
+Shapely
+azure-storage-blob
