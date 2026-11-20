@@ -21,11 +21,11 @@ the installer:
 | --- | --- |
 | Unreal Engine | **5.7**, able to build C++ projects (an installed build or a source build) |
 | Project AirSim | **1.0.1**: either the prebuilt *plugin* release or a source build (see below) |
-| OS | Ubuntu 22.04 is what this was built and tested on. Windows: see [Windows](#windows) |
-| GPU | A recent NVIDIA card with Vulkan drivers (tested on an RTX 4090) |
+| OS | Ubuntu 22.04 is what this was built and tested on. Windows 10/11: see [Windows](#windows) (not yet tested) |
+| GPU | A recent NVIDIA card (tested on an RTX 4090). Linux: Vulkan drivers. Windows: DirectX 12 |
 | Disk | About 35 GB free for the install, plus Unreal's own caches on first launch |
 | Memory | 32 GB or more: the first launch builds the terrain's virtual texture |
-| Other | Python 3.9+, `git`, and `python3-venv` on Ubuntu |
+| Other | Python 3.9+, `git`, and `python3-venv` on Ubuntu. Windows also needs Visual Studio 2022 |
 
 **Which Project AirSim do I have?**
 
@@ -38,6 +38,9 @@ the installer:
 > environment cannot be added to them, so they are not used here.
 
 ## Install (automatic)
+
+These are the Linux commands. On Windows the steps are the same with different commands: see
+[Windows](#windows).
 
 ```bash
 git clone https://github.com/mcity/M-air-Digital-Twin.git
@@ -142,8 +145,8 @@ Things worth knowing:
 ## What is where
 
 ```
-install.py                 the installer
-scripts/                   run the simulator, fly missions, hover test
+install.py                 the installer (install.bat runs it on Windows)
+scripts/                   run the simulator, fly missions, hover test (.sh for Linux, .bat for Windows)
 missions/                  example missions
 MAirCorridorSim/           the Unreal project
   Plugins/MAirCorridor/    the environment: C++ source, flight tools, and (after install) Content/
@@ -162,11 +165,84 @@ Created by the installer and not in git: `.venv/`, `.downloads/`, `ProjectAirSim
 
 ## Windows
 
-The environment was authored on Windows and the installer is written to work there
-(`py -3 install.py --ue-root "C:\Program Files\Epic Games\UE_5.7"`), but the packaging in this repository
-has only been tested on Linux, and the `scripts/*.sh` helpers are Linux shell scripts. On Windows, start
-the editor with the `.uproject`, press Play, and run the tools in
-`MAirCorridorSim\Plugins\MAirCorridor\Tools` with the `.venv` Python.
+> **Not yet tested.** The environment itself was authored on Windows, and the installer and the `.bat`
+> scripts are written for it, but this packaging has only been run on Linux. If something fails, please
+> open an issue with the output.
+
+**What you need, besides the list at the top**
+
+- Windows 10 or 11, 64-bit, with a DirectX 12 graphics card.
+- Unreal Engine 5.7 from the Epic Games Launcher (or a source build).
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **Game development with C++**
+  workload (the free Community edition is fine). Unreal needs it to compile the plugins.
+- [Python](https://www.python.org/downloads/windows/) 3.10, 3.11 or 3.12 (64-bit) and
+  [Git for Windows](https://git-scm.com/download/win).
+
+**Install.** Open a *Command Prompt*. Clone into a **short path**: Windows limits paths to 260
+characters and the assets go deep.
+
+```bat
+cd /d C:\
+git clone https://github.com/mcity/M-air-Digital-Twin.git MAir
+cd MAir
+install.bat
+```
+
+`install.bat` takes the same options as `install.py` on Linux. With no options it looks for Unreal Engine
+in `C:\Program Files\Epic Games\UE_5.7` and downloads the prebuilt Project AirSim plugin
+(`ProjectAirSim-Plugin-Windows-UE5_7-1.0.1.zip`). The other cases:
+
+```bat
+rem Unreal Engine somewhere else
+install.bat --ue-root "D:\Epic Games\UE_5.7"
+
+rem the plugin release already downloaded
+install.bat --airsim "%USERPROFILE%\Downloads\ProjectAirSim-Plugin-Windows-UE5_7-1.0.1.zip"
+
+rem Project AirSim built from source (build its sim libs first: build.cmd simlibs_release)
+install.bat --airsim C:\src\ProjectAirSim
+
+rem into your own C++ Unreal project
+install.bat --project C:\src\MyProject\MyProject.uproject
+```
+
+**Run.** The same scripts as on Linux, as `.bat` files:
+
+```bat
+scripts\run_sim.bat
+```
+
+Windows may ask whether to allow Unreal Engine through the firewall; the simulator and the tools talk
+over local ports 8989 and 8990. The first start is slow, as described under [Run](#run). Then, in a
+second Command Prompt:
+
+```bat
+scripts\hover_test.bat
+scripts\fly_mission.bat missions\mcity_circle.json --dry-run
+scripts\fly_mission.bat missions\mcity_circle.json
+scripts\fly_mission.bat missions\mcity_to_motts.json --record Chase
+scripts\fly_keyboard.bat
+scripts\mission_planner.bat
+scripts\open_editor.bat
+```
+
+Your own Python script: `scripts\run_python.bat my_script.py`.
+
+| Linux | Windows |
+| --- | --- |
+| `python3 install.py ...` | `install.bat ...` |
+| `scripts/run_sim.sh` | `scripts\run_sim.bat` |
+| `scripts/hover_test.sh` | `scripts\hover_test.bat` |
+| `scripts/fly_mission.sh <mission>` | `scripts\fly_mission.bat <mission>` |
+| `scripts/fly_keyboard.sh` | `scripts\fly_keyboard.bat` |
+| `scripts/mission_planner.sh` | `scripts\mission_planner.bat` |
+| `scripts/open_editor.sh` | `scripts\open_editor.bat` |
+| `source scripts/_env.sh && "$MAIR_PYTHON" scripts/run_tool.py my_script.py` | `scripts\run_python.bat my_script.py` |
+| `AIRSIM_TOPICS_PORT=8991 scripts/run_sim.sh` | `set AIRSIM_TOPICS_PORT=8991` then `scripts\run_sim.bat` |
+
+The `.bat` files are thin wrappers around [scripts/mair.py](scripts/mair.py), which also works on Linux
+(`python3 scripts/mair.py sim`). The manual steps for Windows are in
+[docs/MANUAL_INSTALL.md](docs/MANUAL_INSTALL.md#windows).
 
 ## Problems
 

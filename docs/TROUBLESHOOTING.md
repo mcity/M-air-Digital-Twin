@@ -60,6 +60,36 @@ them. Log in with "Ubuntu on Xorg".
 **Camera recordings have a low frame rate.** Each camera capture is a full extra render of the scene.
 Record fewer or smaller cameras.
 
+## Windows
+
+The Windows scripts have not been tested yet (see the README). Things to check first:
+
+**The install or the build fails on a file path, or `The system cannot find the path specified`.**
+Windows limits paths to 260 characters. Move the repository to a short path such as `C:\MAir` and run
+`install.bat` again.
+
+**The build stops with missing compiler or `MSB`/`Visual Studio` errors.** Install Visual Studio 2022
+with the *Game development with C++* workload, then run `install.bat` again.
+
+**pip cannot install a package (it tries to compile `pynng` or `rasterio`).** Use Python 3.10, 3.11 or
+3.12: delete the `.venv` folder and run `py -3.11 install.py`.
+
+**`Connection refused` although the simulator is running.** Allow Unreal Engine through the Windows
+firewall when asked (private networks is enough).
+
+**Finding a forgotten client that holds the simulator's port.** `netstat -ano | findstr 8989` shows the
+process id; Task Manager's *Details* tab shows which program it is. To use other ports, in both windows:
+
+```bat
+set AIRSIM_TOPICS_PORT=8991
+set AIRSIM_SERVICES_PORT=8992
+```
+
+**Showing the frame rate.** Press the backtick key in the simulator window and type `stat fps`.
+
+**Double-clicking a `.bat` file closes at once.** Run the scripts from a Command Prompt so their output
+stays visible.
+
 ## Known limitations
 
 - In the drone's downward camera the Mcity scan can look much darker than it does in the main view.
